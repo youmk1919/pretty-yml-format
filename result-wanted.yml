@@ -1,0 +1,54 @@
+common-name:
+  entities:
+    - key: key1
+      roles:
+        - ROLE_ADMIN
+      callerName: call1
+    - key: key2
+      roles:
+        - ROLE_USER
+      callerName: call2
+    - key: key3
+      roles:
+        - ROLE_ADMIN
+      callerName: call3
+
+eureka:
+  client:
+    enabled: true
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://good-tizspm-upm-prod-i:8080/eu
+    eureka-connection-idle-timeout-seconds: 15
+    eureka-server-connect-timeout-seconds: 3
+    eureka-server-read-timeout-seconds: 4
+    registry-fetch-interval-seconds: 10
+  instance:
+    preferIpAddress: true
+
+guest-stars:
+  bubble: []
+  apis:
+    - /api/contacts_persoone/v1
+    - /api/rendez_vous/v1
+    - /api/personnes/v1
+
+zuul:
+   routes:
+      route-couvertures-a-date:
+         path: "/abcd/couvertures_contractuelles/v*1/couvertures_a_date/**"
+      route-couvertures-contractuelles:
+         path: "/abcd/couvertures_contractuelles/v*1/couvertures/**"
+      route-devis:
+         path: "/abcd/devis/v*1/devis/**"
+      route-risques-a-assurer:
+         path: "/abcd/devis/v*1/risques_a_assurer/**"
+      route-foyers-v1:
+         path: "/xyz/personnes_physiques/v*1/foyers/**"
+      route-personnes-physiques-v1:
+         path: "/xyz/personnes_physiques/v*1/personnes_physiques/**"
+      route-produits-concurrence:
+         path: "/xyz/personnes_physiques/v*1/produits_concurrence/**"
+      route-donnees-references-v5:
+         path: "/xyz/donnees_references/v5/**"
